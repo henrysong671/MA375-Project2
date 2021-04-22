@@ -15,11 +15,11 @@ import numpy as np
 import scipy.optimize as sp
 import matplotlib.pyplot as plt
 
-def find_RSS(y_original, y_modeled):
-    return np.sum(np.square(y_original - y_modeled))
+# calculates sum of the squares of the residual
+def find_RSS(y_original, y_modeled): return np.sum(np.square(y_original - y_modeled))
 
-def import_data(path, sheet):
-    return pd.read_excel(path, sheet_name=sheet)
+# imports dataset from excel sheet
+def import_data(path, sheet): return pd.read_excel(path, sheet_name=sheet)
 
 def linear(x, m, b): return m*x + b
 def quadratic(x, a, b, c): return a*(x**2)+b*x+c
