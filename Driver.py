@@ -130,5 +130,6 @@ plt.text(18, 80, 'Linear RSS = %0.4f' % find_RSS(y, linear_model), color='g')
 # logarithmic model
 # plt.plot(x, logarithmic_model, 'c--', label='logarithmic')
 # plt.text(17.5, 80, 'Logarithmic RSS = %0.4f' % find_RSS(y, logarithmic_model), color='c')
+
 plt.legend()
 plt.show()
