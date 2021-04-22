@@ -1,4 +1,16 @@
-import pandas as pd #requires openpyxl and xlrd
+# Henry Song  |  MA375  |  Spring 2021
+# Project #2: Topic 5 - Curve Fitting
+# File: Driver.py
+# Requirements: pandas, numpy, scipy, matplotlib, openpyxl, xlrd
+# Description: Imports, calculates, and plots curve fitting for a dataset
+#              from an excel spreadsheet. Note: default plotting is set to 
+#              linear regression. Please comment/uncomment other sections to
+#              view other regression methods.
+# Includes: linear, quadratic, cubic, 4th degree, 5th degree, 6th degree,
+#           exponential, and logarithmic curve fitting
+#==========================================================================
+
+import pandas as pd 
 import numpy as np
 import scipy.optimize as sp
 import matplotlib.pyplot as plt
@@ -19,8 +31,8 @@ def exponential(x, a, b): return a*np.exp(b*x)
 def logarithmic(x, a, b): return a + b*np.log(1*x)
 
 # Imports data from specified excel spreadsheet
-file_path = './data/MA375_SP21_Curve_Fitting_Data_samples.xlsx'     # filepath of excel spreadsheet
-sheet_name = 'Length Wt of rabbitfish'      # sheetname of spreadsheet
+file_path = './data/MA375_SP21_Curve_Fitting_Data_samples.xlsx'     # <--: filepath of excel spreadsheet. Edit to change location & name of file
+sheet_name = 'Length Wt of rabbitfish'      # <--: sheetname of spreadsheet. Edit to change sheet name.
 d = import_data(file_path, sheet_name)
 data = d.to_numpy()     # converts to 2D array from pandas dataframe
 
@@ -34,6 +46,7 @@ for i in range(len(data)):
 # converts python lists into numpy arrays
 x = np.array(x)
 y = np.array(y)
+
 
 # linear curve fitting & data
 popt, pcov = sp.curve_fit(linear, x, y)
@@ -67,6 +80,7 @@ exponential_model = exponential(x, *popt)
 popt, pcov = sp.curve_fit(logarithmic, x, y)
 logarithmic_model = logarithmic(x, *popt)
 
+
 # prints RSS values in terminal
 print()
 print("Sum of the Squares of the Residuals")
@@ -80,13 +94,14 @@ print("7. Exponential: \t", find_RSS(y, exponential_model))
 print("8. Logarithmic: \t", find_RSS(y, logarithmic_model))
 print()
 
+
 # plots
 plt.title("Project #2")
 plt.plot(x, y, 'ko', label='original')
 
 # linear model
-# plt.plot(x, linear_model, 'g--', label='linear')
-# plt.text(18, 80, 'Linear RSS = %0.4f' % find_RSS(y, linear_model), color='g')
+plt.plot(x, linear_model, 'g--', label='linear')
+plt.text(18, 80, 'Linear RSS = %0.4f' % find_RSS(y, linear_model), color='g')
 
 # quadratic model
 # plt.plot(x, quadratic_model, 'r--', label='quadratic')
